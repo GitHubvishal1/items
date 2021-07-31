@@ -3,7 +3,14 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
-    
+    jar {  
+    manifest {  
+        attributes(  
+   
+                'Main-Class': 'com.apigee.backend'  
+        )  
+    }  
+}  
 group = 'com.apigee'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
