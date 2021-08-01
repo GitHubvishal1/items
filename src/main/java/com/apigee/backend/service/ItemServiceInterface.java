@@ -1,7 +1,18 @@
 package com.apigee.backend.service;
 
-import java.util.Map;
+import java.util.List;
+import java.util.Optional;
+
+import com.apigee.backend.entities.Items;
 
 public interface ItemServiceInterface {
-	public Map<Integer, String> getItems();
+
+	List<Items> getAllItems();
+
+	Items addItems(Items items);
+
+	Optional<Items> getItemsById(int orderId);
+
+	void removeItems(int items);
+
 }

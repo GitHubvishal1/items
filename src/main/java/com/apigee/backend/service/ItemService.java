@@ -1,41 +1,38 @@
 package com.apigee.backend.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.apigee.backend.entities.Items;
+import com.apigee.backend.repository.DaoInterface;
 
 @Service
 public class ItemService implements ItemServiceInterface {
 
-	// List<Items> list;
-	Map<Integer, String> map;
+	@Autowired
+	private DaoInterface dao;
 
-	public ItemService() {
-//		list = new ArrayList<>();
-//		list.add(new Items(1, "soap"));
-//		list.add(new Items(2, "toothbrush"));
-//		list.add(new Items(3, "handwash"));
-//		list.add(new Items(1, "wash"));
-
-		map = new HashMap<>();
-		map.put(1, "soap");
-		map.put(2, "toothbrush");
-		map.put(3, "wash");
+	@Override
+	public List<Items> getAllItems() {
+		return dao.findAll();
 	}
 
 	@Override
-	public Map<Integer, String> getItems() {
-		return map;
+	public Optional<Items> getItemsById(int orderId) {
+		return dao.findById(orderId);
+	}
+	
+	@Override
+	public void removeItems(int items) {
+		dao.deleteById(items);
 	}
 
-	public List<Entry<Integer, String>> getItems(int orderId) {
-		return map.entrySet().stream().filter(map -> map.getKey() == orderId).collect(Collectors.toList());
-		// return list.stream().filter(list -> list.getId() == orderId).collect(Collectors.toList());
-
+	@Override
+	public Items addItems(Items items) {
+		return dao.save(items);
 	}
 
 }

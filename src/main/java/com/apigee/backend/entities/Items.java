@@ -1,8 +1,27 @@
 package com.apigee.backend.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Items")
 public class Items {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String itemName;
+	
+	public Items() {
+	}
+
+	@Override
+	public String toString() {
+		return "Items [id=" + id + ", itemName=" + itemName + "]";
+	}
 
 	public int getId() {
 		return id;
@@ -25,14 +44,6 @@ public class Items {
 		this.id = id;
 		this.itemName = itemName;
 	}
-
-	public Items() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "Items [id=" + id + ", itemName=" + itemName + "]";
-	}
+	
+	
 }
