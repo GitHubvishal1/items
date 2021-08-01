@@ -3,6 +3,8 @@ package com.apigee.backend.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.apigee.backend.entities.Items;
 import com.apigee.backend.repository.DaoInterface;
 
 @Service
+@Transactional
 public class ItemService implements ItemServiceInterface {
 
 	@Autowired
